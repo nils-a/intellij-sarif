@@ -1,4 +1,4 @@
-package com.github.nilsa.intellijsarif
+package de.nilsa.intellijsarif
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls
