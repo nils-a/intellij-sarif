@@ -1,6 +1,6 @@
-package org.jetbrains.plugins.template.services
+package com.github.nilsa.intellijsarif.services
 
-import org.jetbrains.plugins.template.MyBundle
+import com.github.nilsa.intellijsarif.MyBundle
 
 class MyApplicationService {
 
