@@ -1,0 +1,1554 @@
+{
+    "$schema": "http://json.schemastore.org/sarif-2.1.0-rtm.5",
+    "version": "2.1.0",
+    "runs": [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Infer",
+                    "informationUri": "https://github.com/facebook/infer",
+                    "version": "1.1.0",
+                    "rules": [
+                        {
+                            "id": "DOTNET_RESOURCE_LEAK",
+                            "shortDescription": {
+                                "text": "Dotnet Resource Leak"
+                            },
+                            "helpUri": "https://fbinfer.com/docs/next/all-issue-types#dotnet_resource_leak"
+                        },
+                        {
+                            "id": "NULL_DEREFERENCE",
+                            "shortDescription": {
+                                "text": "Null Dereference"
+                            },
+                            "helpUri": "https://fbinfer.com/docs/next/all-issue-types#null_dereference"
+                        }
+                    ]
+                }
+            },
+            "results": [
+                {
+                    "message": {
+                        "text": "Leaked { n$2 -> -1,\n         n$4 -> -1,\n         n$5 -> -1,\n         n$28 -> -1,\n         n$32.Spectre.Console.Profile._out -> -1,\n         n$91 -> -1,\n         n$93 -> 1,\n         n$93.Spectre.Console.AnsiConsoleFacade._ansiBackend -> -1,\n         n$95 -> -1,\n         n$95.Spectre.Console.AnsiConsoleFacade._ansiBackend -> -1,\n         settings -> -1,\n         profile -> -1,\n         output -> -1,\n         encoding -> -1,\n         return -> -1 } resource(s) in method \"IAnsiConsole AnsiConsoleFactory.Create(AnsiConsoleSettings)\" at type(s) Spectre.Console.Internal.DefaultExclusivityMode."
+                    },
+                    "level": "error",
+                    "ruleId": "DOTNET_RESOURCE_LEAK",
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\AnsiConsoleFactory.cs",
+                                    "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\AnsiConsoleFactory.cs"
+                                },
+                                "region": {
+                                    "startLine": 16,
+                                    "startColumn": 9
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "message": {
+                        "text": "pointer `null` is dereferenced by call to `AppendWithStyle(...)` at line 7, column 9."
+                    },
+                    "level": "error",
+                    "ruleId": "NULL_DEREFERENCE",
+                    "codeFlows": [
+                        {
+                            "threadFlows": [
+                                {
+                                    "locations": [
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 7,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure AppendWithStyle(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 7,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking false branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 12,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure AppendWithStyle(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 12,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 14,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 16,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 20,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure EscapeMarkup(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 20,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 25,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 177,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure ReplaceExact(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 177,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to String StringExtensions.ReplaceExact(String,String,String)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 25,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 177,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure ReplaceExact(...)"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs",
+                                    "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\StringBuilderExtensions.cs"
+                                },
+                                "region": {
+                                    "startLine": 7,
+                                    "startColumn": 9
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "message": {
+                        "text": "pointer `returned by get_Style()` could be null and is dereferenced by call to `SetStyle(...)` at line 42, column 17."
+                    },
+                    "level": "error",
+                    "ruleId": "NULL_DEREFERENCE",
+                    "codeFlows": [
+                        {
+                            "threadFlows": [
+                                {
+                                    "locations": [
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 33,
+                                                        "startColumn": 33
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure Write(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 16,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure GetSegments(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 16,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 21,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 26,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Profile.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Profile.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 109,
+                                                        "startColumn": 16
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure get_Capabilities()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Profile.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Profile.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 109,
+                                                        "startColumn": 16
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to Capabilities Profile.get_Capabilities()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 26,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 42,
+                                                        "startColumn": 11
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure RenderContext(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 46,
+                                                        "startColumn": 5
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure RenderContext(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 48,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 50,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 51,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 3,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 46,
+                                                        "startColumn": 5
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to RenderContext..ctor(IReadOnlyCapabilities,Nullable`1<!0>,Boolean)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderContext.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 42,
+                                                        "startColumn": 11
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to RenderContext..ctor(IReadOnlyCapabilities,Nullable`1<!0>)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 27,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 52,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure Process(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 54,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 55,
+                                                        "startColumn": 18
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Skipping get_Count(): unknown method"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 55,
+                                                        "startColumn": 48
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking false branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 60,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 52,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 60,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking false branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 62,
+                                                        "startColumn": 5
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\RenderPipeline.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 52,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to IEnumerable`1<!0> RenderPipeline.Process(RenderContext,IEnumerable`1<!0>)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 29,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Extensions\\RenderableExtensions.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 16,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to IEnumerable`1<!0> RenderableExtensions.GetSegments(IRenderable,IAnsiConsole)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 33,
+                                                        "startColumn": 33
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Skipping GetEnumerator(): unknown method"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 33,
+                                                        "startColumn": 30
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 33,
+                                                        "startColumn": 18
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Skipping get_Current(): unknown method"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 35,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 31,
+                                                        "startColumn": 33
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure get_IsControlCode()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 31,
+                                                        "startColumn": 33
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to Boolean Segment.get_IsControlCode()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 35,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking false branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 40,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 36,
+                                                        "startColumn": 26
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure get_Style()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 36,
+                                                        "startColumn": 26
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to Style Segment.get_Style()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 40,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 232,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure Equals(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 232,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking false branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 234,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 232,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to Boolean Style.Equals(Style)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 40,
+                                                        "startColumn": 13
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking true branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 42,
+                                                        "startColumn": 17
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 36,
+                                                        "startColumn": 26
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure get_Style()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Rendering\\Segment.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 36,
+                                                        "startColumn": 26
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to Style Segment.get_Style()"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 42,
+                                                        "startColumn": 17
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 51,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure SetStyle(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 53,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Skipping ResetColor(): unknown method"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 55,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Style.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 16,
+                                                        "startColumn": 31
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure get_Background()"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs",
+                                    "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Backends\\Legacy\\LegacyConsoleBackend.cs"
+                                },
+                                "region": {
+                                    "startLine": 42,
+                                    "startColumn": 17
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "message": {
+                        "text": "Leaked { n$23 -> -1, token -> -1, tokenizer -> 1, style -> -1, text -> -1 } resource(s) in method \"Paragraph MarkupParser.Parse(String,Style)\" at type(s) Spectre.Console.MarkupTokenizer."
+                    },
+                    "level": "error",
+                    "ruleId": "DOTNET_RESOURCE_LEAK",
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Text\\Markup\\MarkupParser.cs",
+                                    "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Internal\\Text\\Markup\\MarkupParser.cs"
+                                },
+                                "region": {
+                                    "startLine": 7,
+                                    "startColumn": 9
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "message": {
+                        "text": "."
+                    },
+                    "level": "error",
+                    "ruleId": "NULL_DEREFERENCE",
+                    "codeFlows": [
+                        {
+                            "threadFlows": [
+                                {
+                                    "locations": [
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 30,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure AddChild(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 14,
+                                                        "startColumn": 5
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure ListPromptItem`1<T>(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 16,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 17,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 18,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Skipping List`1<!0>(): unknown method"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 19,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 68,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure CalculateDepth(...)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 69,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "Taking false branch"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 75,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 2,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 68,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to Int32 ListPromptItem`1<T>.CalculateDepth(ListPromptItem`1<T>)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 14,
+                                                        "startColumn": 5
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "return from a call to ListPromptItem`1<T>..ctor(T,ListPromptItem`1<T>)"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 0,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 31,
+                                                        "startColumn": 9
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": ""
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "nestingLevel": 1,
+                                            "location": {
+                                                "physicalLocation": {
+                                                    "artifactLocation": {
+                                                        "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                                        "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                                    },
+                                                    "region": {
+                                                        "startLine": 8,
+                                                        "startColumn": 47
+                                                    }
+                                                },
+                                                "message": {
+                                                    "text": "start of procedure get_Children()"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ],
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uri": "file:C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs",
+                                    "uriBaseId": "/tmp/ebfff75c-4b90-4de6-9b81-c16b47e8bc0c/C:\\_dev\\spectre.console\\src\\Spectre.Console\\Prompts\\List\\ListPromptItem.cs"
+                                },
+                                "region": {
+                                    "startLine": 31,
+                                    "startColumn": 9
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

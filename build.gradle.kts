@@ -1,4 +1,5 @@
 import org.jetbrains.changelog.markdownToHTML
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 fun properties(key: String) = project.findProperty(key).toString()
 
@@ -15,6 +16,25 @@ plugins {
     id("org.jetbrains.qodana") version "0.1.13"
 }
 
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // this plugin
+        classpath("org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:1.1.2") {
+            because("compile json schema of SARIF")
+        }
+    }
+}
+
+apply {
+    plugin("jsonschema2pojo")
+}
+
+val jvmVersion = 11
+
 group = properties("pluginGroup")
 version = properties("pluginVersion")
 
@@ -23,10 +43,13 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+}
+
 // Set the JVM language level used to compile sources and generate files - Java 11 is required since 2020.3
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(11))
+        languageVersion.set(JavaLanguageVersion.of(jvmVersion))
     }
 }
 
@@ -54,7 +77,32 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
+configure<org.jsonschema2pojo.gradle.JsonSchemaExtension> {
+    logger.warn("Hello!")
+    sourceFiles = files("res/json/")
+    //targetDirectory = File(rootDir, "schemaPocos/src/main/java")
+    targetPackage = "de.nilsa.intellijsarif.json"
+    removeOldOutput = true
+    targetVersion = "11"
+    includeGetters = true
+    includeSetters = true
+    setAnnotationStyle("gson")
+}
+
 tasks {
+
+    withType<KotlinCompile> {
+        dependsOn("generateJsonSchema2Pojo")
+        /*
+        kotlinOptions {
+            jvmTarget = jvmVersion
+            languageVersion = kotlinVersion
+            apiVersion = kotlinVersion
+            freeCompilerArgs = listOf("-Xjvm-default=compatibility")
+        }
+        */
+    }
+
     wrapper {
         gradleVersion = properties("gradleVersion")
     }
