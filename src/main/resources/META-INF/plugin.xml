@@ -7,10 +7,19 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow anchor="right" id="de.nilsa.intellijsarif.sarifToolWindow"  icon="SarifIcons.SarifAction"
-                    factoryClass="de.nilsa.intellijsarif.toolWindow.SarifToolWindowFactory" />
+        <toolWindow anchor="right" id="de.nilsa.intellijsarif.sarifToolWindow" icon="SarifIcons.SarifAction"
+                    factoryClass="de.nilsa.intellijsarif.toolWindow.SarifToolWindowFactory"/>
     </extensions>
 
     <applicationListeners>
     </applicationListeners>
+
+    <actions>
+        <action id="InferSharp.Wsl.Analyze"
+                class="de.nilsa.intellijsarif.actions.OpenSarifReportAction"
+                icon="SarifIcons.SarifAction"
+                text="Open SARIF Report">
+            <add-to-group group-id="ToolsMenu" />
+        </action>
+    </actions>
 </idea-plugin>

@@ -14,23 +14,8 @@ plugins {
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
-}
-
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        // this plugin
-        classpath("org.jsonschema2pojo:jsonschema2pojo-gradle-plugin:1.1.2") {
-            because("compile json schema of SARIF")
-        }
-    }
-}
-
-apply {
-    plugin("jsonschema2pojo")
+    // https://github.com/joelittlejohn/jsonschema2pojo/
+    id("jsonschema2pojo") version "1.1.2"
 }
 
 val jvmVersion = 11
@@ -77,15 +62,12 @@ qodana {
     showReport.set(System.getenv("QODANA_SHOW_REPORT")?.toBoolean() ?: false)
 }
 
+// Configure Gradle jsonschema2pojo Plugin - read more: https://github.com/joelittlejohn/jsonschema2pojo/tree/master/jsonschema2pojo-gradle-plugin#usage
 configure<org.jsonschema2pojo.gradle.JsonSchemaExtension> {
-    logger.warn("Hello!")
     sourceFiles = files("res/json/")
-    //targetDirectory = File(rootDir, "schemaPocos/src/main/java")
     targetPackage = "de.nilsa.intellijsarif.json"
     removeOldOutput = true
     targetVersion = "11"
-    includeGetters = true
-    includeSetters = true
     setAnnotationStyle("gson")
 }
 
