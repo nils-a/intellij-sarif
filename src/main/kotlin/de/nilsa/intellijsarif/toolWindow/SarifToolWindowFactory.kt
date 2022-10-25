@@ -18,14 +18,9 @@ class SarifToolWindowFactory : ToolWindowFactory, DumbAware {
         private const val ToolWindowId = "de.nilsa.intellijsarif.sarifToolWindow"
 
         fun openReport(project: Project, report: SarifReport) {
-            val toolWindow = getToolWindow(project);
+            val toolWindow = getToolWindow(project)
             setContent(toolWindow, SarifReportWindow(report))
             toolWindow.show()
-        }
-
-        fun clearContent(project: Project, dispose: Boolean = true) {
-            val toolWindow = getToolWindow(project)
-            toolWindow.contentManager.removeAllContents(dispose)
         }
 
         private fun getToolWindow(project: Project): ToolWindow {
@@ -42,13 +37,17 @@ class SarifToolWindowFactory : ToolWindowFactory, DumbAware {
 
         private fun setContent(toolWindow: ToolWindow, view: JPanel) {
             val contentFactory = ContentFactory.SERVICE.getInstance()
+            toolWindow.contentManager.removeAllContents(false)
             val content = contentFactory.createContent(view, "", false)
+            content.setDisposer(toolWindow.contentManager)
             toolWindow.contentManager.addContent(content)
         }
     }
 
     override fun createToolWindowContent(project: Project, toolWindow: ToolWindow) {
-        setContent(toolWindow, JBPanelWithEmptyText())
+        setContent(toolWindow, JBPanelWithEmptyText().apply {
+            emptyText.text = "No SARIF report loaded."
+        })
     }
 
     override fun init(toolWindow: ToolWindow) {

@@ -21,5 +21,8 @@
                 text="Open SARIF Report">
             <add-to-group group-id="ToolsMenu" />
         </action>
+
+        <group id="SarifReportWindowToolbar">
+        </group>
     </actions>
 </idea-plugin>

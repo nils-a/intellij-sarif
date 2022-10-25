@@ -8,25 +8,20 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.project.guessProjectDir
 import com.intellij.openapi.vfs.VirtualFile
 import de.nilsa.intellijsarif.report.SarifReport
-import de.nilsa.intellijsarif.shared.SarifDataKeys
 import de.nilsa.intellijsarif.toolWindow.SarifToolWindowFactory
 
 class OpenSarifReportAction : AnAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.project ?: return
-        val file = e.getData(SarifDataKeys.OpenSarifReport)
-            ?: openSelectFileDialog(project)
-            ?: return
+        val file = openSelectFileDialog(project) ?: return
         val report = SarifReport(project, file.toNioPath())
-        SarifToolWindowFactory.clearContent(project)
         SarifToolWindowFactory.openReport(project, report)
     }
 
     private fun openSelectFileDialog(project: Project) : VirtualFile? {
         val fileChooserDescriptor = FileChooserDescriptorFactory.createSingleFileDescriptor()
         fileChooserDescriptor.title = "Select a SARIF Report"
-        fileChooserDescriptor.description = "Select the Sarif report, not the json or text."
 
         return FileChooser.chooseFile(
             fileChooserDescriptor,
