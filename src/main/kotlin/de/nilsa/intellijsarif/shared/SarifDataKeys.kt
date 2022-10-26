@@ -1,8 +1,9 @@
 package de.nilsa.intellijsarif.shared
 
 import com.intellij.openapi.actionSystem.DataKey
+import de.nilsa.intellijsarif.toolWindow.SarifErrorsTreePanel
 
 object SarifDataKeys {
-    val SelectedSarifResult: DataKey<de.nilsa.intellijsarif.json.Result> =
-        DataKey.create("${SarifDataKeys.javaClass.canonicalName}.SelectedSarifResult")
+    val SarifResultsTreePanel: DataKey<SarifErrorsTreePanel> =
+        DataKey.create("${SarifDataKeys.javaClass.canonicalName}.SarifResultsTreePanel")
 }

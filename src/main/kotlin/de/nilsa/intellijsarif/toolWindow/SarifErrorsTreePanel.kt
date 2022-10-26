@@ -1,15 +1,12 @@
 package de.nilsa.intellijsarif.toolWindow
 
 import com.intellij.icons.AllIcons
-import com.intellij.openapi.actionSystem.*
-import com.intellij.openapi.ui.SimpleToolWindowPanel
 import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.openapi.vfs.VirtualFileManager
 import com.intellij.ui.components.JBPanel
 import com.intellij.ui.treeStructure.Tree
 import de.nilsa.intellijsarif.json.Result
 import de.nilsa.intellijsarif.report.SarifReport
-import de.nilsa.intellijsarif.shared.SarifDataKeys
 import java.awt.Component
 import java.net.URL
 import javax.swing.JComponent
@@ -19,7 +16,7 @@ import javax.swing.ToolTipManager
 import javax.swing.tree.*
 
 class SarifErrorsTreePanel(private val report: SarifReport)
-    : JBPanel<SarifErrorsTreePanel>(true), DataProvider {
+    : JBPanel<SarifErrorsTreePanel>(true) {
     private val root = DefaultMutableTreeNode("")
     private val model = DefaultTreeModel(root)
     private val tree = Tree(model)
@@ -28,58 +25,50 @@ class SarifErrorsTreePanel(private val report: SarifReport)
         tree.cellRenderer = MyTreeCellRenderer()
         tree.selectionModel.selectionMode = TreeSelectionModel.SINGLE_TREE_SELECTION
         buildTree()
+        tree
         ToolTipManager.sharedInstance().registerComponent(tree)
         add(tree)
         model.reload()
-        expandAll()
     }
 
-    private fun expandAll() {
+
+    val selectedResult: Result?
+        get() {
+            val selected = tree.getSelectedNodes(DefaultMutableTreeNode::class.java) { it.isLeaf }.firstOrNull()
+                ?: return null
+            return when (selected.userObject) {
+                is Result -> selected.userObject as Result
+                else -> null
+            }
+        }
+
+    fun expandAll() {
         expandCollapse(true)
     }
 
-    private fun collapseAll() {
+    fun collapseAll() {
         expandCollapse(false)
     }
 
-    private fun getSelectedResult(): Result? {
-        val selected = tree.getSelectedNodes(DefaultMutableTreeNode::class.java) { it.isLeaf }.firstOrNull()
-            ?: return null
-        return when (selected.userObject) {
-            is Result -> selected.userObject as Result
-            else -> null
-        }
-    }
+    private fun expandCollapse(expand: Boolean) {
+        var test: (TreePath) -> Boolean = tree::isCollapsed
+        var apply: (TreePath) -> Unit = tree::expandPath
 
-    private fun expandCollapse(expand: Boolean, path: TreePath? = null) {
-        if (path == null) {
-            expandCollapse(expand, TreePath(tree.model.root))
-            return
+        if (!expand) {
+            test = tree::isExpanded
+            apply = tree::collapsePath
         }
 
-        val node = path.lastPathComponent as TreeNode
-        for (it in node.children()) {
-            val nextPath = path.pathByAddingChild(it)
-            expandCollapse(expand, nextPath)
-        }
-
-        if (expand) {
-            if (!tree.isExpanded(path)) {
-                tree.expandPath(path)
+        root.preorderEnumeration()
+            .asSequence()
+            .forEach {
+                val path = TreePath(it)
+                if (test(path)) {
+                    apply(path)
+                }
             }
-        } else {
-            if (!tree.isCollapsed(path)) {
-                tree.collapsePath(path)
-            }
-        }
     }
 
-    override fun getData(dataId: String): Any? {
-        if(SarifDataKeys.SelectedSarifResult.`is`(dataId)) {
-            return getSelectedResult()
-        }
-        return null
-    }
 
     private fun buildTree() {
         // group by location, show fileName, sort alphabetically

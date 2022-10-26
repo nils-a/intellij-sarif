@@ -15,7 +15,7 @@
     </applicationListeners>
 
     <actions>
-        <action id="InferSharp.Wsl.Analyze"
+        <action id="de.nilsa.intellijsarif.actions.OpenSarifReportAction"
                 class="de.nilsa.intellijsarif.actions.OpenSarifReportAction"
                 icon="SarifIcons.SarifAction"
                 text="Open SARIF Report">
@@ -23,6 +23,14 @@
         </action>
 
         <group id="SarifReportWindowToolbar">
+            <action id="de.nilsa.intellijsarif.toolWindow.SarifErrorsTreePanel.ExpandAll"
+                    class="de.nilsa.intellijsarif.toolWindow.SarifErrorsTreePanelAction$ExpandAll"
+                    icon="AllIcons.Actions.Expandall"
+                    use-shortcut-of="ExpandAll" />
+            <action id="de.nilsa.intellijsarif.toolWindow.SarifErrorsTreePanel.CollapseAll"
+                    class="de.nilsa.intellijsarif.toolWindow.SarifErrorsTreePanelAction$CollapseAll"
+                    icon="AllIcons.Actions.Collapseall"
+                    use-shortcut-of="CollapseAll" />
         </group>
     </actions>
 </idea-plugin>
